@@ -20,6 +20,5 @@ const calculateTotalMortgage = (percent, contribution, amount, countMonths) => {
 	const loanBody = amount - contribution
 	const MonthlyPayment = loanBody*(monthMultiplier +(monthMultiplier/(((1 + monthMultiplier)**countMonths)-1)))
 	const total = MonthlyPayment * countMonths
-	return total.toFixed(2).toString()
+	return Number(total.toFixed(2))
 }
-
