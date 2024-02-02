@@ -46,10 +46,10 @@ class ErrorTriangle {
 	}
 }
 
-const ErrorTriangle =(a, b, c) =>{
+const getTriangle =(a, b, c) =>{
 	try {
 		return new Triangle(a, b, c)
 	} catch (error) {
-		return new NotTriangle()
+		return new ErrorTriangle()
 	}	
 }
