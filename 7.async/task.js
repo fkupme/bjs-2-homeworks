@@ -4,7 +4,6 @@ class AlarmClock {
 			this.intervalId = intervalId
 	}
 
-
 	addClock(time, callback) {
 		if (!(time && callback)) {
 			throw new Error('Отсутствуют обязательные аргументы');
@@ -43,6 +42,7 @@ class AlarmClock {
 		const currentDate = new Date()
 		return currentDate.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
 	}
+
 	start() {
 		if (this.intervalId) {
 			return
@@ -50,7 +50,7 @@ class AlarmClock {
 		this.intervalId = setInterval(() => {
 			this.alarmCollection.forEach(alarm => {
 				if (
-					alarm.time === this.getCurrentFormattedTime
+					alarm.time === this.getCurrentFormattedTime()
 					&& alarm.canCall === true
 				) {
 					alarm.canCall = false;
@@ -59,17 +59,21 @@ class AlarmClock {
 			})
 		}, 1000);
 	}
+
 	stop() {
 		clearInterval(this.intervalId);
 		this.intervalId = null;
 	}
+
 	resetAllCalls() {
 		this.alarmCollection.forEach(alarm => {
 			alarm.canCall = true;
 		})
 	}
+
 	clearAlarms() {
 		this.stop();
 		this.alarmCollection = [];
 	}
 }
+
