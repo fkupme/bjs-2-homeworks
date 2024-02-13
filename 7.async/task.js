@@ -1,7 +1,7 @@
 class AlarmClock {
-	constructor(alarmCollection = [], intervalId = null) {
-		this.alarmCollection = alarmCollection,
-			this.intervalId = intervalId
+	constructor() {
+		this.alarmCollection = [],
+			this.intervalId = null
 	}
 
 	addClock(time, callback) {
@@ -21,11 +21,9 @@ class AlarmClock {
 		};
 		isTimeCorrect(time); // как лучше было бы сделать эту проверку?
 
-		for (let alarm of this.alarmCollection) {
-			if (alarm.time === time) {
+			if (this.alarmCollection.some(alarm => alarm.time === time)) {
 				console.warn('Уже присутствует звонок на это же время')
 			}
-		};
 
 		this.alarmCollection.push({
 			time,
